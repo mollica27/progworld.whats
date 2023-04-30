@@ -23,18 +23,18 @@ import { i18n } from "../../translate/i18n";
 
 import { AuthContext } from "../../context/Auth/AuthContext";
 
-// const Copyright = () => {
-// 	return (
-// 		<Typography variant="body2" color="textSecondary" align="center">
-// 			{"Copyleft "}
-// 			<Link color="inherit" href="https://github.com/canove">
-// 				Canove
-// 			</Link>{" "}
-// 			{new Date().getFullYear()}
-// 			{"."}
-// 		</Typography>
-// 	);
-// };
+const Copyright = () => {
+	return (
+		<Typography variant="body2" color="textSecondary" align="center">
+			{"Copyleft "}
+			<Link color="inherit" href="https://github.com/mollica27">
+				ProgWorld
+			</Link>{" "}
+			{new Date().getFullYear()}
+			{"."}
+		</Typography>
+	);
+};
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -80,6 +80,7 @@ const Login = () => {
         <Avatar className={classes.avatar}>
           <LockOutlined />
         </Avatar>
+        <img src="logos.png" width="50%" alt="" />
         <Typography component="h1" variant="h5">
           {i18n.t("login.title")}
         </Typography>
@@ -145,7 +146,7 @@ const Login = () => {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>{/* <Copyright /> */}</Box>
+      <Box mt={8}><Copyright /></Box>
     </Container>
   );
 };
