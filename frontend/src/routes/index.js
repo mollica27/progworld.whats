@@ -13,7 +13,7 @@ import QuickAnswers from "../pages/QuickAnswers/";
 import Schedules from "../pages/Schedules/";
 import SendMassMessage from "../pages/SendMassMessage";
 import SettingMessage from "../pages/SettingMessage";
-import Settings from "../pages/Settings/";
+import Settings from "../pages/Settings/index";
 import ShippingReport from "../pages/ShippingReport";
 import Signup from "../pages/Signup/";
 import Tags from "../pages/Tags/";
