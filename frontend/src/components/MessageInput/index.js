@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   newMessageBox: {
-    background: "#eee",
+    background: theme.palette.background.default,
     width: "100%",
     display: "flex",
     padding: "7px",
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   messageInputWrapper: {
     padding: 6,
     marginRight: 7,
-    background: "#fff",
+    background: theme.palette.background.paper,
     display: "flex",
     borderRadius: 20,
     flex: 1,
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   sendMessageIcons: {
-    color: "grey",
+    color: theme.palette.text.primary,
   },
 
   uploadInput: {
@@ -179,7 +179,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     position: "absolute",
     bottom: "50px",
-    background: "#ffffff",
+    background: theme.palette.background.default,
     padding: "2px",
     border: "1px solid #CCC",
     left: 0,
