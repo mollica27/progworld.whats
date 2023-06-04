@@ -55,13 +55,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    background: "#fafafa",
+    background: theme.palette.background.paper,
     padding: theme.spacing(1),
   },
 
   serachInputWrapper: {
     flex: 1,
-    background: "#fff",
+    backgroundColor: theme.palette.background.default,
     display: "flex",
     borderRadius: 40,
     padding: 4,
