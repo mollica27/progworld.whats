@@ -217,7 +217,7 @@ const LoggedInLayout = ({ children }) => {
             noWrap
             className={classes.title}
           >
-            WhatsBot4U
+            WhatsBot
           </Typography>
           {user.id && <NotificationsPopOver />}
 

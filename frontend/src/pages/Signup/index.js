@@ -29,18 +29,18 @@ import { i18n } from "../../translate/i18n";
 import api from "../../services/api";
 import toastError from "../../errors/toastError";
 
-// const Copyright = () => {
-// 	return (
-// 		<Typography variant="body2" color="textSecondary" align="center">
-// 			{"Copyleft "}
-// 			<Link color="inherit" href="https://github.com/canove">
-// 				Canove
-// 			</Link>{" "}
-// 			{new Date().getFullYear()}
-// 			{"."}
-// 		</Typography>
-// 	);
-// };
+const Copyright = () => {
+	return (
+		<Typography variant="body2" color="textSecondary" align="center">
+			{"Copyleft "}
+			<Link color="inherit" href="https://www.progworld.win/">
+				Progworld
+			</Link>{" "}
+			{new Date().getFullYear()}
+			{"."}
+		</Typography>
+	);
+};
 
 const useStyles = makeStyles(theme => ({
 	paper: {
@@ -194,7 +194,7 @@ const SignUp = () => {
 					)}
 				</Formik>
 			</div>
-			<Box mt={5}>{/* <Copyright /> */}</Box>
+			<Box mt={5}><Copyright /></Box>
 		</Container>
 	);
 };

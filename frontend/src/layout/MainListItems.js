@@ -108,6 +108,19 @@ const MainListItems = (props) => {
         primary={i18n.t("mainDrawer.listItems.quickAnswers")}
         icon={<QuestionAnswerOutlinedIcon />}
       />
+            <ListItemLink
+              to="/BulkMessage"
+              primary="Bulk Message"
+              icon={<ChatBubbleOutlineOutlined />}
+            />
+
+           {/* config de envio de bulk message */}
+
+            <ListItemLink
+              to="/ShippingReport"
+              primary="Relatório Envio"
+              icon={<LibraryBooks />}
+            />
       <Can
         role={user.profile}
         perform="drawer-admin-items:view"
@@ -138,23 +151,12 @@ const MainListItems = (props) => {
               icon={<LocalOfferIcon />}
             />
 
-<ListItemLink
-              to="/BulkMessage"
-              primary="Bulk Message"
-              icon={<ChatBubbleOutlineOutlined />}
-            />
-
             <ListItemLink
               to="/SettingsMessage"
               primary="Configurações Envio"
               icon={<AddCircleOutline />}
             />
-
-            <ListItemLink
-              to="/ShippingReport"
-              primary="Relatório Envio"
-              icon={<LibraryBooks />}
-            />
+            {/* colocar aqui o bulk messages */}
             
             <ListItemLink
               to="/settings"
