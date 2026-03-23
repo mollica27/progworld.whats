@@ -13,8 +13,8 @@ import {
   DialogContent,
   DialogTitle,
   CircularProgress,
-} from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
+} from "@mui/material";
+import { green } from "@mui/material/colors";
 import { i18n } from "../../translate/i18n";
 
 import api from "../../services/api";

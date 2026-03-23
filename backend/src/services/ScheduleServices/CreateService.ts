@@ -30,9 +30,9 @@ const CreateService = async ({
   const schedule = await Schedule.create(
     {
       body,
-      sendAt,
-      contactId,
-      userId,
+      sendAt: new Date(sendAt),
+      contactId: +contactId,
+      userId: userId ? +userId : undefined,
       status: 'PENDENTE'
     }
   );

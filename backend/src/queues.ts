@@ -8,21 +8,26 @@ import Schedule from "./models/Schedule";
 import Contact from "./models/Contact";
 import GetDefaultWhatsApp from "./helpers/GetDefaultWhatsApp";
 
-const connection = process.env.REDIS_URI || "";
-const limiterMax = process.env.REDIS_OPT_LIMITER_MAX || 1;
-const limiterDuration = process.env.REDIS_OPT_LIMITER_DURATION || 3000;
+const redisConfig = {
+  host: process.env.REDIS_HOST || "redis",
+  port: parseInt(process.env.REDIS_PORT || "6379", 10)
+};
 
-export const messageQueue = new Queue("MessageQueue", connection, {
+const limiterMax = parseInt(process.env.REDIS_OPT_LIMITER_MAX || "1", 10);
+const limiterDuration = parseInt(process.env.REDIS_OPT_LIMITER_DURATION || "3000", 10);
+
+export const messageQueue = new Queue("MessageQueue", {
+  redis: redisConfig,
   limiter: {
-    max: limiterMax as number,
-    duration: limiterDuration as number
+    max: limiterMax,
+    duration: limiterDuration
   }
 });
 
-export const scheduleMonitor = new Queue("ScheduleMonitor", connection);
+export const scheduleMonitor = new Queue("ScheduleMonitor", { redis: redisConfig });
 export const sendScheduledMessages = new Queue(
   "SendSacheduledMessages",
-  connection
+  { redis: redisConfig }
 );
 
 export function startQueueProcess() {

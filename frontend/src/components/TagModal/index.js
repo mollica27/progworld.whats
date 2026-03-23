@@ -4,24 +4,23 @@ import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { toast } from "react-toastify";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { Colorize } from "@material-ui/icons";
-import { ColorBox } from 'material-ui-color';
+import { makeStyles } from "@mui/styles";
+import { green } from "@mui/material/colors";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Colorize } from "@mui/icons-material";
 
 import { i18n } from "../../translate/i18n";
 
 import api from "../../services/api";
 import toastError from "../../errors/toastError";
 import { AuthContext } from "../../context/Auth/AuthContext";
-import { IconButton, InputAdornment } from "@material-ui/core";
+import { IconButton, InputAdornment } from "@mui/material";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -60,7 +59,7 @@ const useStyles = makeStyles(theme => ({
 const TagSchema = Yup.object().shape({
 	name: Yup.string()
 		.min(3, "Mensagem muito curta")
-		.required("Obrigatório")
+		.required("ObrigatÃ³rio")
 });
 
 const TagModal = ({ open, onClose, tagId, reload }) => {
@@ -188,14 +187,13 @@ const TagModal = ({ open, onClose, tagId, reload }) => {
 								</div>
 
 								{ colorPickerModalOpen && (
-									<div>
-										<ColorBox
-											disableAlpha={true}
-											hslGradient={false}
-											style={{margin: '20px auto 0'}}
-											value={tag.color}
-											onChange={val => {
-												setTag(prev => ({ ...prev, color: `#${val.hex}` }));
+									<div style={{ marginTop: 20, textAlign: 'center' }}>
+										<input
+											type="color"
+											value={tag.color || "#000000"}
+											style={{ width: '100%', height: 50, border: 'none', cursor: 'pointer' }}
+											onChange={e => {
+												setTag(prev => ({ ...prev, color: e.target.value }));
 											}}
 										/>
 									</div>

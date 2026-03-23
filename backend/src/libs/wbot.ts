@@ -2,11 +2,14 @@ import makeWASocket, {
   AuthenticationState,
   DisconnectReason,
   fetchLatestBaileysVersion,
+  WASocket,
   makeInMemoryStore,
-  WASocket
+  proto // Import proto
 } from "@adiwajshing/baileys";
 
 import { Boom } from "@hapi/boom";
+import * as Sentry from "@sentry/node"; // Importar Sentry corretamente
+
 import MAIN_LOGGER from "@adiwajshing/baileys/lib/Utils/logger";
 import NodeCache from "node-cache";
 import Whatsapp from "../models/Whatsapp";
@@ -82,16 +85,14 @@ export const initWbot = async (whatsapp: Whatsapp): Promise<Session> => {
         let retriesQrCode = 0;
 
         let wsocket: Session = null;
-        const store = makeInMemoryStore({
-          logger: loggerBaileys
-        });
-
         const { state, saveCreds } = await useMultiFileAuthState(whatsapp);
+
+        const store = makeInMemoryStore({ logger: loggerBaileys, state }); // Inicializa store com state e logger
 
         wsocket = makeWASocket({
           logger: loggerBaileys,
           printQRInTerminal: false,
-          auth: state as AuthenticationState,
+          auth: state, // Pass state directly as auth
           version,
           msgRetryCounterCache,
           getMessage: async key => {
@@ -99,8 +100,14 @@ export const initWbot = async (whatsapp: Whatsapp): Promise<Session> => {
               const msg = await store.loadMessage(key.remoteJid!, key.id!);
               return msg?.message || undefined;
             }
+            return proto.WebMessageInfo.fromObject({}); // Fallback if store is not available
           }
         });
+
+        store.bind(wsocket.ev); // Bind store events to wsocket
+        wsocket.store = store; // Assign store to wsocket instance
+        wsocket.ev.on("creds.update", saveCreds); // Use saveCreds from state
+
 
         wsocket.ev.on(
           "connection.update",
@@ -118,8 +125,7 @@ export const initWbot = async (whatsapp: Whatsapp): Promise<Session> => {
               if (disconect === 403) {
                 await whatsapp.update({
                   status: "PENDING",
-                  session: "",
-                  number: ""
+                  session: ""
                 });
                 await DeleteBaileysService(whatsapp.id);
 
@@ -144,8 +150,7 @@ export const initWbot = async (whatsapp: Whatsapp): Promise<Session> => {
               if (disconect === DisconnectReason.loggedOut) {
                 await whatsapp.update({
                   status: "PENDING",
-                  session: "",
-                  number: ""
+                  session: ""
                 });
                 await DeleteBaileysService(whatsapp.id);
 
@@ -234,15 +239,12 @@ export const initWbot = async (whatsapp: Whatsapp): Promise<Session> => {
             }
           }
         );
-
-        wsocket.ev.on("creds.update", saveCreds);
-
-        wsocket.store = store;
-        store.bind(wsocket.ev);
-      })();
-    } catch (error) {
-      console.log(error);
-      reject(error);
-    }
-  });
-};
+        })();
+        } catch (error) {
+        console.log(error);
+        Sentry.captureException(error);
+        logger.error(error);
+        reject(error);
+        }
+        });
+        };

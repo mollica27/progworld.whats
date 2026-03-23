@@ -1,27 +1,27 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/material/styles";
 
-import Paper from "@material-ui/core/Paper";
-import Input from "@material-ui/core/Input";
+import Paper from "@mui/material/Paper";
+import Input from "@mui/material/Input";
 
 import clsx from "clsx";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
+import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
 
-import FormLabel from "@material-ui/core/FormLabel";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 import SelectConection from "../../components/SelectConection";
 
 import MainHeader from "../../components/MainHeader";
 import Title from "../../components/Title";
 import MainContainer from "../../components/MainContainer";
-import Switch from "@material-ui/core/Switch";
-import Button from "@material-ui/core/Button";
+import Switch from "@mui/material/Switch";
+import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
 
 import api from "../../services/api";
@@ -138,7 +138,7 @@ const ConfigMessage = () => {
   return (
     <MainContainer className={classes.mainContainer}>
       <MainHeader>
-        <Title>Configuração de envio de mensagem.</Title>
+        <Title>ConfiguraÃ§Ã£o de envio de mensagem.</Title>
       </MainHeader>
       <Paper className={classes.mainPaper} variant="outlined">
         <SelectConection
@@ -195,7 +195,7 @@ const ConfigMessage = () => {
             fullWidth
             className={classes.margin}
           >
-            <FormLabel component="legend">Configurações adicionais</FormLabel>
+            <FormLabel component="legend">ConfiguraÃ§Ãµes adicionais</FormLabel>
             <FormGroup>
               <FormControlLabel
                 control={
@@ -205,7 +205,7 @@ const ConfigMessage = () => {
                     name="contact"
                   />
                 }
-                label="Enviar só para os meus contatos"
+                label="Enviar sÃ³ para os meus contatos"
               />
               <FormControlLabel
                 control={
@@ -215,7 +215,7 @@ const ConfigMessage = () => {
                     name="photo"
                   />
                 }
-                label="Enviar mensagem só para os numeros que tem foto"
+                label="Enviar mensagem sÃ³ para os numeros que tem foto"
               />
               <FormControlLabel
                 control={
@@ -232,7 +232,7 @@ const ConfigMessage = () => {
 
           <FormControl fullWidth className={classes.margin}>
             <InputLabel htmlFor="standard-adornment-amount">
-              Incluir mensagem no final com opção de não receber mais (opt-out)
+              Incluir mensagem no final com opÃ§Ã£o de nÃ£o receber mais (opt-out)
             </InputLabel>
             <Input
               id="standard-adornment-amount"
@@ -255,7 +255,7 @@ const ConfigMessage = () => {
               handleSaveSettings();
             }}
           >
-            Salvar configurações
+            Salvar configuraÃ§Ãµes
           </Button>
         </div>
       </Paper>

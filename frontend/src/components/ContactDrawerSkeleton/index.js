@@ -1,7 +1,7 @@
 import React from "react";
-import Skeleton from "@material-ui/lab/Skeleton";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
+import Skeleton from "@mui/lab/Skeleton";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
 import { i18n } from "../../translate/i18n";
 
 const ContactDrawerSkeleton = ({ classes }) => {

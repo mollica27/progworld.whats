@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import { makeStyles } from "@mui/material/styles";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import toastError from "../../errors/toastError";
 import api from "../../services/api";
 import { i18n } from "../../translate/i18n";
@@ -12,16 +12,16 @@ import {
 	Tooltip,
 	Typography,
 	CircularProgress,
-} from "@material-ui/core";
+} from "@mui/material";
 
 import {
 	SignalCellularConnectedNoInternet2Bar,
 	SignalCellularConnectedNoInternet0Bar,
 	SignalCellular4Bar,
 	CropFree,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 
-import { green } from "@material-ui/core/colors";
+import { green } from "@mui/material/colors";
 
 const useStyles = makeStyles(theme => ({
 	chips: {
@@ -136,7 +136,7 @@ const QueueSelect = ({ selectedQueueIds, onChange }) => {
 	return (
 		<div style={{ marginTop: 6 }}>
 			<FormControl fullWidth margin="dense" variant="outlined">
-				<InputLabel>Selecione uma conexão*</InputLabel>
+				<InputLabel>Selecione uma conexÃ£o*</InputLabel>
 				<Select
 					// multiple
 					labelWidth={180}

@@ -4,34 +4,34 @@ import * as Yup from "yup";
 import { Formik, FieldArray, Form, Field } from "formik";
 import { toast } from "react-toastify";
 
-import { FormControlLabel } from "@material-ui/core";
+import { FormControlLabel } from "@mui/material";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import SaveIcon from "@material-ui/icons/Save";
-import EditIcon from "@material-ui/icons/Edit";
-import HelpOutlineOutlinedIcon from "@material-ui/icons/HelpOutlineOutlined";
+import { makeStyles } from "@mui/material/styles";
+import { green } from "@mui/material/colors";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import CircularProgress from "@mui/material/CircularProgress";
+import SaveIcon from "@mui/icons-material/Save";
+import EditIcon from "@mui/icons-material/Edit";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { i18n } from "../../translate/i18n";
-import Switch from "@material-ui/core/Switch";
+import Switch from "@mui/material/Switch";
 
 import api from "../../services/api";
 import toastError from "../../errors/toastError";
 import ColorPicker from "../ColorPicker";
-import { IconButton, InputAdornment } from "@material-ui/core";
-import { Colorize } from "@material-ui/icons";
-import Typography from "@material-ui/core/Typography";
-import DeleteOutline from "@material-ui/icons/DeleteOutline";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import StepContent from "@material-ui/core/StepContent";
+import { IconButton, InputAdornment } from "@mui/material";
+import { Colorize } from "@mui/icons-material";
+import Typography from "@mui/material/Typography";
+import DeleteOutline from "@mui/icons-material/DeleteOutline";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import StepContent from "@mui/material/StepContent";
 import ConfirmationModal from "../ConfirmationModal";
 
 import OptionsChatBot from "../ChatBots/options";
@@ -261,7 +261,7 @@ const QueueModal = ({ open, onClose, queueId, onEdit }) => {
         onClose={handleCloseConfirmationModal}
         onConfirm={() => handleDeleteQueue(selectedQueue.id)}
       >
-        {i18n.t("Tem certeza? Todas as opções internas também serão excluídas")}
+        {i18n.t("Tem certeza? Todas as opÃ§Ãµes internas tambÃ©m serÃ£o excluÃ­das")}
       </ConfirmationModal>
       <Dialog
         maxWidth="md"
@@ -366,10 +366,10 @@ const QueueModal = ({ open, onClose, queueId, onEdit }) => {
                 </div>
 
                 <Typography variant="subtitle1">
-                  Opções
+                  OpÃ§Ãµes
                   <CustomToolTip
-                    title="Adicione opções para construir um chatbot"
-                    content="Se houver apenas uma opção, ela será escolhida automaticamente, fazendo com que o bot responda com a mensagem da opção e siga adiante"
+                    title="Adicione opÃ§Ãµes para construir um chatbot"
+                    content="Se houver apenas uma opÃ§Ã£o, ela serÃ¡ escolhida automaticamente, fazendo com que o bot responda com a mensagem da opÃ§Ã£o e siga adiante"
                   >
                     <HelpOutlineOutlinedIcon
                       style={{ marginLeft: "14px" }}
@@ -501,8 +501,8 @@ const QueueModal = ({ open, onClose, queueId, onEdit }) => {
                                           {!queue.chatbots[index]
                                             ?.greetingMessage && (
                                             <CustomToolTip
-                                              title="A mensagem é obrigatória para seguir ao próximo nível"
-                                              content="Se a mensagem não estiver definida, o bot não seguirá adiante"
+                                              title="A mensagem Ã© obrigatÃ³ria para seguir ao prÃ³ximo nÃ­vel"
+                                              content="Se a mensagem nÃ£o estiver definida, o bot nÃ£o seguirÃ¡ adiante"
                                             >
                                               <HelpOutlineOutlinedIcon
                                                 color="secondary"
@@ -567,7 +567,7 @@ const QueueModal = ({ open, onClose, queueId, onEdit }) => {
                             <StepLabel
                             onClick={() => push({ name: "", value: "" })}
                             >
-                              Adiconar opções
+                              Adiconar opÃ§Ãµes
                             </StepLabel>
                           </Step>
                         </Stepper>

@@ -2,8 +2,8 @@ import React, { useState, useCallback, useContext } from "react";
 import { toast } from "react-toastify";
 import { format, parseISO } from "date-fns";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
+import { makeStyles } from "@mui/material/styles";
+import { green } from "@mui/material/colors";
 import {
 	Button,
 	TableBody,
@@ -16,7 +16,7 @@ import {
 	Tooltip,
 	Typography,
 	CircularProgress,
-} from "@material-ui/core";
+} from "@mui/material";
 import {
 	Edit,
 	CheckCircle,
@@ -25,7 +25,7 @@ import {
 	SignalCellular4Bar,
 	CropFree,
 	DeleteOutline,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";

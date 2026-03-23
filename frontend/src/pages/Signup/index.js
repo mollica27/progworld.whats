@@ -18,11 +18,11 @@ import {
 	InputAdornment,
 	IconButton,
 	Link
-} from '@material-ui/core';
+} from '@mui/material';
 
-import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
+import { LockOutlined, Visibility, VisibilityOff } from '@mui/icons-material';
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/material/styles";
 
 import { i18n } from "../../translate/i18n";
 

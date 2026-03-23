@@ -10,10 +10,12 @@ services:
       context: ./backend
       dockerfile: ./Dockerfile
     environment:
-      - DB_HOST=mysql
+      - DB_DIALECT=postgres
+      - DB_HOST=postgresql
       - DB_USER=root
-      - DB_PASS=${MYSQL_ROOT_PASSWORD:-strongpassword}
-      - DB_NAME=${MYSQL_DATABASE:-whaticket}
+      - DB_PASS=${DB_PASS:-strongpassword}
+      - DB_NAME=${DB_NAME:-whaticket}
+      - REDIS_HOST=redis
       - JWT_SECRET=${JWT_SECRET:-3123123213123}
       - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-75756756756}
       - BACKEND_URL=${BACKEND_URL:-http://localhost}
@@ -45,17 +47,23 @@ services:
     networks:
       - whaticket
 
-  mysql:
-    image: ${MYSQL_ENGINE:-mariadb}:${MYSQL_VERSION:-10.6}
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_bin    
-    volumes:
-      - ./.docker/data/:/var/lib/mysql
+  postgresql:
+    image: postgres:15-alpine
+    restart: always
     environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE:-whaticket}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-strongpassword}
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=${DB_PASS:-strongpassword}
+      - POSTGRES_DB=${DB_NAME:-whaticket}
       - TZ=${TZ:-America/Fortaleza}
+    volumes:
+      - ./.docker/db_data:/var/lib/postgresql/data
     ports:
-      - ${MYSQL_PORT:-3306}:3306
+      - ${DB_PORT:-5432}:5432
+    networks:
+      - whaticket
+
+  redis:
+    image: redis:alpine
     restart: always
     networks:
       - whaticket

@@ -1,5 +1,6 @@
 import { getIO } from "../../libs/socket";
 import Contact from "../../models/Contact";
+import ContactCustomField from "../../models/ContactCustomField";
 
 interface ExtraInfo {
   name: string;
@@ -45,14 +46,19 @@ const CreateOrUpdateContactService = async ({
 
   if (!contact) {
     try {
-      contact = await Contact.create({
-        name,
-        number,
-        profilePicUrl,
-        email,
-        isGroup,
-        extraInfo
-      });
+      contact = await Contact.create(
+        {
+          name,
+          number,
+          profilePicUrl,
+          email,
+          isGroup,
+          extraInfo: extraInfo as ContactCustomField[]
+        },
+        {
+          include: ["extraInfo"]
+        }
+      );
 
       io.emit("contact", {
         action: "create",

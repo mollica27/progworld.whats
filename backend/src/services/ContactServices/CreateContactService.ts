@@ -1,5 +1,6 @@
 import AppError from "../../errors/AppError";
 import Contact from "../../models/Contact";
+import ContactCustomField from "../../models/ContactCustomField";
 
 interface ExtraInfo {
   name: string;
@@ -33,7 +34,7 @@ const CreateContactService = async ({
       name,
       number,
       email,
-      extraInfo
+      extraInfo: extraInfo as ContactCustomField[]
     },
     {
       include: ["extraInfo"]

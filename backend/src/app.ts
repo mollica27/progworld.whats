@@ -3,6 +3,8 @@ import "reflect-metadata";
 import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 import cookieParser from "cookie-parser";
 import * as Sentry from "@sentry/node";
 import { messageQueue, sendScheduledMessages } from "./queues";
@@ -16,6 +18,18 @@ import { logger } from "./utils/logger";
 Sentry.init({ dsn: process.env.SENTRY_DSN });
 
 const app = express();
+
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+}));
+
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutos
+	max: 1000, // limite de 1000 requisições por IP
+  message: "Muitas requisições vindas deste IP, tente novamente mais tarde."
+});
+
+app.use(limiter);
 
 app.use(
   cors({

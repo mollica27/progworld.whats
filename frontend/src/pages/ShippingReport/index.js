@@ -13,9 +13,9 @@ import {
   InputAdornment,
   TextField,
   Button
-} from "@material-ui/core";
-import { DeleteOutline } from "@material-ui/icons";
-import SearchIcon from "@material-ui/icons/Search";
+} from "@mui/material";
+import { DeleteOutline } from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
 
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
@@ -189,7 +189,7 @@ const QuickAnswers = () => {
       <ConfirmationModal
         title={
           deletingQuickAnswers &&
-          `Você tem certeza que quer excluir este relatório: ${deletingQuickAnswers.phone}?`
+          `VocÃª tem certeza que quer excluir este relatÃ³rio: ${deletingQuickAnswers.phone}?`
         }
         open={confirmModalOpen}
         onClose={setConfirmModalOpen}
@@ -198,7 +198,7 @@ const QuickAnswers = () => {
         {i18n.t("quickAnswers.confirmationModal.deleteMessage")}
       </ConfirmationModal>
       <MainHeader>
-        <Title>Relatório de envio de mensagens</Title>
+        <Title>RelatÃ³rio de envio de mensagens</Title>
         <MainHeaderButtonsWrapper>
           <TextField
             placeholder={i18n.t("quickAnswers.searchPlaceholder")}
@@ -231,7 +231,7 @@ const QuickAnswers = () => {
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell align="center">Conexão</TableCell>
+              <TableCell align="center">ConexÃ£o</TableCell>
               <TableCell align="center">Numero</TableCell>
               <TableCell align="center">Mensagem</TableCell>
               <TableCell align="center">Status</TableCell>

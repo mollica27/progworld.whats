@@ -1,10 +1,10 @@
 import React from "react";
 
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Divider from "@material-ui/core/Divider";
-import Skeleton from "@material-ui/lab/Skeleton";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Divider from "@mui/material/Divider";
+import Skeleton from "@mui/lab/Skeleton";
 
 const TicketsSkeleton = () => {
 	return (

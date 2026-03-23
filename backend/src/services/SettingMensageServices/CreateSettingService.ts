@@ -1,19 +1,19 @@
 import SettingMessage from "../../models/SettingMessage";
 
 interface Request {
-  contact: boolean;
-  limit: string | number;
-  minutes: string | number;
-  optOut: string;
+  contacts: boolean;
+  limit: number;
+  minutes: number;
   photo: boolean;
   random: boolean;
-  seconds: string | number;
-  whatsappId: string | number;
+  seconds: number;
+  whatsappId: number;
+  status: string;
 }
 
 const CreateSettingService = async (
-  settingsData: Request
-): Promise<SettingMessage | undefined> => {
+  settingsData: any
+): Promise<SettingMessage | undefined | null> => {
   const checkExist = await SettingMessage.findOne({
     where: {
       whatsappId: settingsData.whatsappId

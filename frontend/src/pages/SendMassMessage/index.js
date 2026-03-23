@@ -1,9 +1,9 @@
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { green } from "@material-ui/core/colors";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import { green } from "@mui/material/colors";
+import Paper from "@mui/material/Paper";
+import { makeStyles } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
 import { Field, Form, Formik } from "formik";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
@@ -182,7 +182,7 @@ const Contacts = () => {
   };
 
   const formatNumber = (number) => {
-    if(!number) toastError("Número inválido");
+    if(!number) toastError("NÃºmero invÃ¡lido");
     if (number.length > 11 && number.startsWith("55")) {
       return `${number}`;
     }else {
@@ -200,7 +200,7 @@ const Contacts = () => {
       }
 
       if(!selectedQueueIds) {
-        toast.error("Selecione uma conexão");
+        toast.error("Selecione uma conexÃ£o");
         actions.setSubmitting(false);
         return;
       }

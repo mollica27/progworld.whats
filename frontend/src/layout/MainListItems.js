@@ -1,20 +1,20 @@
-import { Badge } from "@material-ui/core";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import { AddCircleOutline, ChatBubbleOutlineOutlined, LibraryBooks } from "@material-ui/icons";
-import AccountTreeOutlinedIcon from "@material-ui/icons/AccountTreeOutlined";
-import ContactPhoneOutlinedIcon from "@material-ui/icons/ContactPhoneOutlined";
-import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
-import EventIcon from "@material-ui/icons/Event";
-import LocalOfferIcon from "@material-ui/icons/LocalOffer";
-import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
-import QuestionAnswerOutlinedIcon from "@material-ui/icons/QuestionAnswerOutlined";
-import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
-import SyncAltIcon from "@material-ui/icons/SyncAlt";
-import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import { Badge } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
+import { AddCircleOutline, ChatBubbleOutlineOutlined, LibraryBooks } from "@mui/icons-material";
+import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";
+import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import EventIcon from "@mui/icons-material/Event";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import SyncAltIcon from "@mui/icons-material/SyncAlt";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import React, { useContext, useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Can } from "../components/Can";
@@ -118,7 +118,7 @@ const MainListItems = (props) => {
 
             <ListItemLink
               to="/ShippingReport"
-              primary="Relatório Envio"
+              primary="RelatÃ³rio Envio"
               icon={<LibraryBooks />}
             />
       <Can
@@ -153,7 +153,7 @@ const MainListItems = (props) => {
 
             <ListItemLink
               to="/SettingsMessage"
-              primary="Configurações Envio"
+              primary="ConfiguraÃ§Ãµes Envio"
               icon={<AddCircleOutline />}
             />
             {/* colocar aqui o bulk messages */}

@@ -30,7 +30,7 @@ const ListService = async ({
     }
   }
 
-  const { count, rows: tags } = await Tag.findAndCountAll({
+  const { count: countTotal, rows: tags } = await Tag.findAndCountAll({
     where: whereCondition,
     limit,
     offset,
@@ -53,6 +53,8 @@ const ListService = async ({
     ],
     subQuery: false
   });
+
+  const count = Array.isArray(countTotal) ? countTotal.length : countTotal;
   const hasMore = count > offset + tags.length;
 
   return {

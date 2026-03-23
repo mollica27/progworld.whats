@@ -3,8 +3,8 @@ import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { toast } from "react-toastify";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
+import { makeStyles } from "@mui/material/styles";
+import { green } from "@mui/material/colors";
 
 import {
   Dialog,
@@ -22,7 +22,7 @@ import {
   Paper,
   Grid,
   Checkbox,
-} from "@material-ui/core";
+} from "@mui/material";
 
 import api from "../../services/api";
 import { i18n } from "../../translate/i18n";
@@ -30,10 +30,10 @@ import toastError from "../../errors/toastError";
 import QueueSelect from "../QueueSelect";
 
 const longText = `
-Desmarque esta opção para definir um horário de expediente para os atendimentos.
-Quando um usuário escolher ser direcionado a um atendente, o sistema irá
-verificar o horário e o dia, se estiver fora do expediente, envia um aviso
-ao usuário e não direciona ao atendente escolhido.
+Desmarque esta opÃ§Ã£o para definir um horÃ¡rio de expediente para os atendimentos.
+Quando um usuÃ¡rio escolher ser direcionado a um atendente, o sistema irÃ¡
+verificar o horÃ¡rio e o dia, se estiver fora do expediente, envia um aviso
+ao usuÃ¡rio e nÃ£o direciona ao atendente escolhido.
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -399,7 +399,7 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                                   onChange={handleChange}
                                 />
                               }
-                              label="Definir horário de expediente"
+                              label="Definir horÃ¡rio de expediente"
                               labelPlacement="end"
                             />
                           </Tooltip>

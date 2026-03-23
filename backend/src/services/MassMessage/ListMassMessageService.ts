@@ -17,7 +17,7 @@ const ListMassMessageService = async ({
   searchParam = "",
   pageNumber = "1"
 }: Request): Promise<Response> => {
-  const whereCondition = {
+  const whereCondition: any = {
     phone: Sequelize.where(
       Sequelize.fn("LOWER", Sequelize.col("phone")),
       "LIKE",

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import openSocket from "../../services/socket-io";
 import clsx from "clsx";
 
-import { Paper, makeStyles } from "@material-ui/core";
+import { Paper, makeStyles } from "@mui/material";
 import { TagsContainer } from "../TagsContainer";
 
 import ContactDrawer from "../ContactDrawer";

@@ -1,5 +1,5 @@
-import { Chip, Paper, TextField } from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import { Chip, Paper, TextField } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
 import React, { useEffect, useState } from "react";
 import { isArray, isString } from "lodash";
 import toastError from "../../errors/toastError";

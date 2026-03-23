@@ -111,14 +111,14 @@ const UpdateWhatsAppService = async ({
     startWorkHourWeekend,
     endWorkHourWeekend,
     outOfWorkMessage,
-    monday,
-    tuesday,
-    wednesday,
-    thursday,
-    friday,
-    saturday,
-    sunday,
-    defineWorkHours
+    monday: !!monday,
+    tuesday: !!tuesday,
+    wednesday: !!wednesday,
+    thursday: !!thursday,
+    friday: !!friday,
+    saturday: !!saturday,
+    sunday: !!sunday,
+    defineWorkHours: String(defineWorkHours)
   });
 
   await AssociateWhatsappQueue(whatsapp, queueIds);

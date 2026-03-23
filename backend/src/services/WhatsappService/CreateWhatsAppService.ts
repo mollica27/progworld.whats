@@ -3,7 +3,6 @@ import * as Yup from "yup";
 import AppError from "../../errors/AppError";
 import Whatsapp from "../../models/Whatsapp";
 import AssociateWhatsappQueue from "./AssociateWhatsappQueue";
-
 interface Request {
   name: string;
   queueIds?: number[];
@@ -14,7 +13,6 @@ interface Request {
   isMultidevice?: boolean;
   startWorkHour?: string;
   endWorkHour?: string;
-  daysOfWeek?: string;
   startWorkHourWeekend?: string;
   endWorkHourWeekend?: string;
   outOfWorkMessage?: string;
@@ -45,11 +43,9 @@ const CreateWhatsAppService = async ({
   transferTicketMessage,
   startWorkHour,
   endWorkHour,
-  daysOfWeek,
   startWorkHourWeekend,
   endWorkHourWeekend,
-  outOfWorkMessage,
-  monday,
+  outOfWorkMessage,  monday,
   tuesday,
   wednesday,
   thursday,
@@ -113,18 +109,17 @@ const CreateWhatsAppService = async ({
       transferTicketMessage,
       startWorkHour,
       endWorkHour,
-      daysOfWeek,
       startWorkHourWeekend,
       endWorkHourWeekend,
       outOfWorkMessage,
-      monday,
-      tuesday,
-      wednesday,
-      thursday,
-      friday,
-      saturday,
-      sunday,
-      defineWorkHours
+      monday: !!monday,
+      tuesday: !!tuesday,
+      wednesday: !!wednesday,
+      thursday: !!thursday,
+      friday: !!friday,
+      saturday: !!saturday,
+      sunday: !!sunday,
+      defineWorkHours: String(defineWorkHours)
     },
     { include: ["queues"] }
   );

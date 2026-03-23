@@ -1,26 +1,26 @@
 import React from "react";
 import * as Yup from "yup";
-import { makeStyles } from "@material-ui/core/styles";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import StepContent from "@material-ui/core/StepContent";
+import { makeStyles } from "@mui/material/styles";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import StepContent from "@mui/material/StepContent";
 import api from "../../services/api";
-import Typography from "@material-ui/core/Typography";
-import EditIcon from "@material-ui/icons/Edit";
-import { IconButton } from "@material-ui/core";
+import Typography from "@mui/material/Typography";
+import EditIcon from "@mui/icons-material/Edit";
+import { IconButton } from "@mui/material";
 import { Formik, Field, FieldArray } from "formik";
-import DeleteOutline from "@material-ui/icons/DeleteOutline";
-import SaveIcon from "@material-ui/icons/Save";
-import TextField from "@material-ui/core/TextField";
+import DeleteOutline from "@mui/icons-material/DeleteOutline";
+import SaveIcon from "@mui/icons-material/Save";
+import TextField from "@mui/material/TextField";
 import toastError from "../../errors/toastError";
 import { toast } from "react-toastify";
-import HelpOutlineOutlinedIcon from "@material-ui/icons/HelpOutlineOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import CustomToolTip from "../ToolTips";
 import ConfirmationModal from "../ConfirmationModal";
 import { i18n } from "../../translate/i18n";
-import Switch from "@material-ui/core/Switch";
-import { FormControlLabel } from "@material-ui/core";
+import Switch from "@mui/material/Switch";
+import { FormControlLabel } from "@mui/material";
 
 const QueueSchema = Yup.object().shape({
   options: Yup.array()
@@ -150,7 +150,7 @@ export default function VerticalLinearStepper(props) {
         onClose={handleCloseConfirmationModal}
         onConfirm={() => handleDeleteQueue(selectedQueue.id)}
       >
-        {i18n.t("Tem certeza? Todas as opções internas também serão excluídas")}
+        {i18n.t("Tem certeza? Todas as opÃ§Ãµes internas tambÃ©m serÃ£o excluÃ­das")}
       </ConfirmationModal>
 
       {!loading && (
@@ -281,8 +281,8 @@ export default function VerticalLinearStepper(props) {
                                       {!steps.options[index]
                                         ?.greetingMessage && (
                                         <CustomToolTip
-                                          title="A mensagem é obrigatória para seguir ao próximo nível"
-                                          content="Se a mensagem não estiver definida, o bot não seguirá adiante"
+                                          title="A mensagem Ã© obrigatÃ³ria para seguir ao prÃ³ximo nÃ­vel"
+                                          content="Se a mensagem nÃ£o estiver definida, o bot nÃ£o seguirÃ¡ adiante"
                                         >
                                           <HelpOutlineOutlinedIcon
                                             color="secondary"
@@ -348,7 +348,7 @@ export default function VerticalLinearStepper(props) {
                             })
                           }
                         >
-                          Adiconar opções
+                          Adiconar opÃ§Ãµes
                         </StepLabel>
                       </Step>
                     </Stepper>
