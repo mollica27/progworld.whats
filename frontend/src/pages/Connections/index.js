@@ -2,7 +2,7 @@ import React, { useState, useCallback, useContext } from "react";
 import { toast } from "react-toastify";
 import { format, parseISO } from "date-fns";
 
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import { green } from "@mui/material/colors";
 import {
 	Button,

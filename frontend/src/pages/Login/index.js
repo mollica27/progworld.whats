@@ -17,7 +17,7 @@ import {
 
 import { LockOutlined, Visibility, VisibilityOff } from '@mui/icons-material';
 
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 
 import { i18n } from "../../translate/i18n";
 

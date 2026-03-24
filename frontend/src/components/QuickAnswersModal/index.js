@@ -5,7 +5,6 @@ import { Formik, Form, Field } from "formik";
 import { toast } from "react-toastify";
 
 import {
-  makeStyles,
   Button,
   TextField,
   Dialog,
@@ -14,6 +13,7 @@ import {
   DialogTitle,
   CircularProgress,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { green } from "@mui/material/colors";
 import { i18n } from "../../translate/i18n";
 

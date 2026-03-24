@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 
 import Paper from "@mui/material/Paper";
 import Input from "@mui/material/Input";

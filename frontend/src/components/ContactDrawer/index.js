@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";

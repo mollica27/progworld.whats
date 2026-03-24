@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { parseISO, format, isSameDay } from "date-fns";
 import clsx from "clsx";
 
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import { green } from "@mui/material/colors";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";

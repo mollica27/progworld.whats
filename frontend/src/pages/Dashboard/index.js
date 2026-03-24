@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 import Paper from "@mui/material/Paper"
 import Container from "@mui/material/Container"
 import Grid from "@mui/material/Grid"
-import { makeStyles } from "@mui/material/styles"
+import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
 
 import useTickets from "../../hooks/useTickets"

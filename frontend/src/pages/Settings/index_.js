@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import openSocket from "socket.io-client";
 import { useHistory } from "react-router-dom";
 
-import { makeStyles, withStyles } from "@mui/material/styles";
+import { makeStyles, withStyles } from "@mui/styles";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";

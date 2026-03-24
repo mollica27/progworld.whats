@@ -1,6 +1,6 @@
 import React from "react";
 
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import { Avatar, Card, CardHeader } from "@mui/material";
 import Skeleton from "@mui/lab/Skeleton";
 

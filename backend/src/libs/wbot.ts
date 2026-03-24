@@ -5,12 +5,12 @@ import makeWASocket, {
   WASocket,
   makeInMemoryStore,
   proto // Import proto
-} from "@adiwajshing/baileys";
+} from "@whiskeysockets/baileys";
 
 import { Boom } from "@hapi/boom";
 import * as Sentry from "@sentry/node"; // Importar Sentry corretamente
 
-import MAIN_LOGGER from "@adiwajshing/baileys/lib/Utils/logger";
+import MAIN_LOGGER from "@whiskeysockets/baileys/lib/Utils/logger";
 import NodeCache from "node-cache";
 import Whatsapp from "../models/Whatsapp";
 import { logger } from "../utils/logger";
@@ -65,186 +65,162 @@ export const removeWbot = async (
 };
 
 export const initWbot = async (whatsapp: Whatsapp): Promise<Session> => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {
-      (async () => {
-        const io = getIO();
+      const io = getIO();
 
-        const whatsappUpdate = await Whatsapp.findOne({
-          where: { id: whatsapp.id }
-        });
+      const whatsappUpdate = await Whatsapp.findOne({
+        where: { id: whatsapp.id }
+      });
 
-        if (!whatsappUpdate) return;
+      if (!whatsappUpdate) {
+        return reject(new AppError("ERR_WAPP_NOT_FOUND"));
+      }
 
-        const { id, name, isMultidevice } = whatsappUpdate;
-        const { isLatest, version } = await fetchLatestBaileysVersion();
+      const { id, name, isMultidevice } = whatsappUpdate;
+      const { isLatest, version } = await fetchLatestBaileysVersion();
 
-        logger.info(`using WA v${version.join(".")}, isLatest: ${isLatest}`);
-        logger.info(`isMultidevice: ${isMultidevice}`);
-        logger.info(`Starting session ${name}`);
-        let retriesQrCode = 0;
+      logger.info(`using WA v${version.join(".")}, isLatest: ${isLatest}`);
+      logger.info(`isMultidevice: ${isMultidevice}`);
+      logger.info(`Starting session ${name}`);
+      let retriesQrCode = 0;
 
-        let wsocket: Session = null;
-        const { state, saveCreds } = await useMultiFileAuthState(whatsapp);
+      let wsocket: Session = null;
+      const { state, saveCreds } = await useMultiFileAuthState(whatsapp);
 
-        const store = makeInMemoryStore({ logger: loggerBaileys, state }); // Inicializa store com state e logger
+      const store = makeInMemoryStore({ logger: loggerBaileys });
 
-        wsocket = makeWASocket({
-          logger: loggerBaileys,
-          printQRInTerminal: false,
-          auth: state, // Pass state directly as auth
-          version,
-          msgRetryCounterCache,
-          getMessage: async key => {
-            if (store) {
-              const msg = await store.loadMessage(key.remoteJid!, key.id!);
-              return msg?.message || undefined;
-            }
-            return proto.WebMessageInfo.fromObject({}); // Fallback if store is not available
+      wsocket = makeWASocket({
+        logger: loggerBaileys,
+        printQRInTerminal: false,
+        auth: state,
+        version,
+        msgRetryCounterCache,
+        getMessage: async key => {
+          if (store) {
+            const msg = await store.loadMessage(key.remoteJid!, key.id!);
+            return msg?.message || undefined;
           }
-        });
+          return undefined;
+        }
+      });
 
-        store.bind(wsocket.ev); // Bind store events to wsocket
-        wsocket.store = store; // Assign store to wsocket instance
-        wsocket.ev.on("creds.update", saveCreds); // Use saveCreds from state
+      store.bind(wsocket.ev);
+      wsocket.store = store;
+      wsocket.ev.on("creds.update", saveCreds);
 
+      wsocket.ev.on(
+        "connection.update",
+        async ({ connection, lastDisconnect, qr }) => {
+          logger.info(
+            `Socket  ${name} Connection Update ${connection || ""} ${
+              lastDisconnect || ""
+            }`
+          );
 
-        wsocket.ev.on(
-          "connection.update",
-          async ({ connection, lastDisconnect, qr }) => {
-            logger.info(
-              `Socket  ${name} Connection Update ${connection || ""} ${
-                lastDisconnect || ""
-              }`
-            );
+          const disconect = (lastDisconnect?.error as Boom)?.output
+            ?.statusCode;
 
-            const disconect = (lastDisconnect?.error as Boom)?.output
-              ?.statusCode;
-
-            if (connection === "close") {
-              if (disconect === 403) {
-                await whatsapp.update({
-                  status: "PENDING",
-                  session: ""
-                });
-                await DeleteBaileysService(whatsapp.id);
-
-                await BaileysSessions.destroy({
-                  where: {
-                    whatsappId: whatsapp.id
-                  }
-                });
-
-                io.emit("whatsappSession", {
-                  action: "update",
-                  session: whatsapp
-                });
-                removeWbot(id, false);
-              }
-
-              if (disconect !== DisconnectReason.loggedOut) {
-                removeWbot(id, false);
-                setTimeout(() => StartWhatsAppSession(whatsapp), 2000);
-              }
-
-              if (disconect === DisconnectReason.loggedOut) {
-                await whatsapp.update({
-                  status: "PENDING",
-                  session: ""
-                });
-                await DeleteBaileysService(whatsapp.id);
-
-                await BaileysSessions.destroy({
-                  where: {
-                    whatsappId: whatsapp.id
-                  }
-                });
-
-                io.emit("whatsappSession", {
-                  action: "update",
-                  session: whatsapp
-                });
-                removeWbot(id, false);
-                setTimeout(() => StartWhatsAppSession(whatsapp), 2000);
-              }
-            }
-
-            if (connection === "open") {
+          if (connection === "close") {
+            if (disconect === 403 || disconect === DisconnectReason.loggedOut) {
               await whatsapp.update({
-                status: "CONNECTED",
-                qrcode: "",
-                retries: 0
+                status: "PENDING",
+                session: ""
+              });
+              await DeleteBaileysService(whatsapp.id);
+
+              await BaileysSessions.destroy({
+                where: {
+                  whatsappId: whatsapp.id
+                }
               });
 
               io.emit("whatsappSession", {
                 action: "update",
                 session: whatsapp
               });
+              removeWbot(id, false);
+              setTimeout(() => StartWhatsAppSession(whatsapp), 2000);
+            } else {
+              removeWbot(id, false);
+              setTimeout(() => StartWhatsAppSession(whatsapp), 2000);
+            }
+          }
 
+          if (connection === "open") {
+            await whatsapp.update({
+              status: "CONNECTED",
+              qrcode: "",
+              retries: 0
+            });
+
+            io.emit("whatsappSession", {
+              action: "update",
+              session: whatsapp
+            });
+
+            const sessionIndex = sessions.findIndex(
+              s => s.id === whatsapp.id
+            );
+            if (sessionIndex === -1) {
+              wsocket.id = whatsapp.id;
+              sessions.push(wsocket);
+            }
+
+            resolve(wsocket);
+          }
+
+          if (qr !== undefined) {
+            if (retriesQrCodeMap.get(id) && retriesQrCodeMap.get(id) >= 3) {
+              await whatsappUpdate.update({
+                status: "DISCONNECTED",
+                qrcode: ""
+              });
+              await DeleteBaileysService(whatsappUpdate.id);
+              await BaileysSessions.destroy({
+                where: {
+                  whatsappId: whatsapp.id
+                }
+              });
+              io.emit("whatsappSession", {
+                action: "update",
+                session: whatsappUpdate
+              });
+              wsocket.ev.removeAllListeners("connection.update");
+              wsocket.ws.close();
+              wsocket = null;
+              retriesQrCodeMap.delete(id);
+            } else {
+              logger.info(`Session QRCode Generate ${name}`);
+              retriesQrCodeMap.set(id, (retriesQrCode += 1));
+
+              await whatsapp.update({
+                qrcode: qr,
+                status: "qrcode",
+                retries: 0
+              });
               const sessionIndex = sessions.findIndex(
                 s => s.id === whatsapp.id
               );
+
               if (sessionIndex === -1) {
                 wsocket.id = whatsapp.id;
                 sessions.push(wsocket);
               }
 
-              resolve(wsocket);
-            }
-
-            if (qr !== undefined) {
-              if (retriesQrCodeMap.get(id) && retriesQrCodeMap.get(id) >= 3) {
-                await whatsappUpdate.update({
-                  status: "DISCONNECTED",
-                  qrcode: ""
-                });
-                await DeleteBaileysService(whatsappUpdate.id);
-                await BaileysSessions.destroy({
-                  where: {
-                    whatsappId: whatsapp.id
-                  }
-                });
-                io.emit("whatsappSession", {
-                  action: "update",
-                  session: whatsappUpdate
-                });
-                wsocket.ev.removeAllListeners("connection.update");
-                wsocket.ws.close();
-                wsocket = null;
-                // retriesQrCode = 0;
-                retriesQrCodeMap.delete(id);
-              } else {
-                logger.info(`Session QRCode Generate ${name}`);
-                retriesQrCodeMap.set(id, (retriesQrCode += 1));
-
-                await whatsapp.update({
-                  qrcode: qr,
-                  status: "qrcode",
-                  retries: 0
-                });
-                const sessionIndex = sessions.findIndex(
-                  s => s.id === whatsapp.id
-                );
-
-                if (sessionIndex === -1) {
-                  wsocket.id = whatsapp.id;
-                  sessions.push(wsocket);
-                }
-
-                io.emit("whatsappSession", {
-                  action: "update",
-                  session: whatsapp
-                });
-              }
+              io.emit("whatsappSession", {
+                action: "update",
+                session: whatsapp
+              });
             }
           }
-        );
-        })();
-        } catch (error) {
-        console.log(error);
-        Sentry.captureException(error);
-        logger.error(error);
-        reject(error);
         }
-        });
-        };
+      );
+    } catch (error) {
+      console.log(error);
+      Sentry.captureException(error);
+      logger.error(error);
+      reject(error);
+    }
+  });
+};

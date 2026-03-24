@@ -2,7 +2,7 @@ import React from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Skeleton from "@mui/lab/Skeleton";
-import { makeStyles } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(theme => ({
 	customTableCell: {

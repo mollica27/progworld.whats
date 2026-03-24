@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import clsx from "clsx";
 
 import {
-  makeStyles,
   Drawer,
   AppBar,
   Toolbar,
@@ -13,6 +12,7 @@ import {
   IconButton,
   Menu,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";

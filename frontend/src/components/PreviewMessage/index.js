@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from "react";
 import { toast } from "react-toastify";
 import openSocket from "../../services/socket-io";
 
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";

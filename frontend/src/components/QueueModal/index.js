@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import { FormControlLabel } from "@mui/material";
 
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import { green } from "@mui/material/colors";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";

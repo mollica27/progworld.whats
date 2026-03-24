@@ -5,7 +5,7 @@ import { Picker } from "emoji-mart";
 import MicRecorder from "mic-recorder-to-mp3";
 import clsx from "clsx";
 
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import CircularProgress from "@mui/material/CircularProgress";

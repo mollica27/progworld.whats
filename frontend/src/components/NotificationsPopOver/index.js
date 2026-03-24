@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import Badge from "@mui/material/Badge";
 import ChatIcon from "@mui/icons-material/Chat";
 

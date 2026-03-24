@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 
 import TicketsManager from "../../components/TicketsManager/";
 import Ticket from "../../components/Ticket/";

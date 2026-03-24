@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/styles";
 import {
 	BarChart,
 	CartesianGrid,

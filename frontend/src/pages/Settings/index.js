@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import openSocket from "socket.io-client";
 
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";

@@ -1,6 +1,6 @@
 import React from "react";
 import * as Yup from "yup";
-import { makeStyles } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
