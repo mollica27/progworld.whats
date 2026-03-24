@@ -3,6 +3,7 @@ import Routes from "./routes";
 import "react-toastify/dist/ReactToastify.css";
 
 import { createTheme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import { ThemeProvider as ThemeProviderStyles } from "@mui/styles"; // Adicionado
 import { makeStyles } from "@mui/styles";
 import { ptBR } from "@mui/material/locale";
 
@@ -132,7 +133,9 @@ const App = () => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-        <Content />
+        <ThemeProviderStyles theme={theme === "light" ? lightTheme : darkTheme}>
+          <Content />
+        </ThemeProviderStyles>
       </ThemeProvider>
     </StyledEngineProvider>
   );

@@ -5,7 +5,6 @@ import openSocket from "socket.io-client";
 import {
   Button,
   IconButton,
-  makeStyles,
   Paper,
   Table,
   TableBody,
@@ -14,6 +13,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";

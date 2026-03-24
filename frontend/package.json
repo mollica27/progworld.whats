@@ -39,7 +39,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "legacy": "react-scripts --openssl-legacy-provider start",
+    "legacy": "set NODE_OPTIONS=--openssl-legacy-provider&& react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -58,5 +58,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "ajv": "^8.0.0",
+    "ajv-keywords": "^5.0.0"
   }
 }

@@ -11,6 +11,7 @@ import {
   MenuItem,
   IconButton,
   Menu,
+  useTheme, // Adicionado
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
@@ -31,9 +32,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     height: "100vh",
-    [theme.breakpoints.down("sm")]: {
-      height: "calc(100vh - 56px)",
-    },
+    // Trava de segurança para theme.breakpoints
+    ...(theme?.breakpoints && {
+      [theme.breakpoints.down("sm")]: {
+        height: "calc(100vh - 56px)",
+      },
+    }),
   },
 
   toolbar: {
@@ -47,11 +51,11 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "48px",
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
+    zIndex: theme?.zIndex?.drawer ? theme.zIndex.drawer + 1 : 1101, // Trava de segurança
+    transition: theme?.transitions?.create ? theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
+    }) : "none",
   },
   appBarShift: {
     marginLeft: drawerWidth,
