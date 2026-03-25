@@ -1,5 +1,5 @@
 import React from "react";
-import Skeleton from "@mui/lab/Skeleton";
+import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import { i18n } from "../../translate/i18n";
@@ -10,7 +10,7 @@ const ContactDrawerSkeleton = ({ classes }) => {
 			<Paper square variant="outlined" className={classes.contactHeader}>
 				<Skeleton
 					animation="wave"
-					variant="circle"
+					variant="circular"
 					width={160}
 					height={160}
 					className={classes.contactAvatar}

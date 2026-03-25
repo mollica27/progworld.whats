@@ -492,16 +492,17 @@ const MessagesList = ({ ticketId, isGroup }) => {
         } else return (<></>)
       }*/
       else if (message.mediaType === "image") {
-
+        if (!message.mediaUrl || message.mediaUrl.includes("undefined")) return null;
         return <ModalImageCors imageUrl={message.mediaUrl} />;
       } else if (message.mediaType === "audio") {
+        if (!message.mediaUrl || message.mediaUrl.includes("undefined")) return null;
         return (
           <audio controls>
             <source src={message.mediaUrl} type="audio/ogg"></source>
           </audio>
         );
       } else if (message.mediaType === "video") {
-
+        if (!message.mediaUrl || message.mediaUrl.includes("undefined")) return null;
         return (
           <video
             className={classes.messageMedia}
@@ -510,6 +511,7 @@ const MessagesList = ({ ticketId, isGroup }) => {
           />
         );
       } else {
+        if (!message.mediaUrl || message.mediaUrl.includes("undefined")) return null;
 
         return (
           <>

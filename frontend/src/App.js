@@ -29,24 +29,32 @@ const App = () => {
   const [checked, setChecked] = useState(false);
   const [theme, setTheme] = useState("light");
 
-  const lightTheme = createTheme(
+  const lightTheme = React.useMemo(() => createTheme(
     {
       palette: {
         mode: "light",
-        primary: { main: config.system.color.lightTheme.palette.primary || "#6B62FE" },
-        secondary: { main: config.system.color.lightTheme.palette.secondary || "#F50057" },
-        toolbar: { main: config.system.color.lightTheme.toolbar.background || "#6B62FE" },
+        primary: { main: config.system.color.lightTheme.palette?.primary || "#6B62FE" },
+        secondary: { main: config.system.color.lightTheme.palette?.secondary || "#F50057" },
+        toolbar: { main: config.system.color.lightTheme.toolbar?.background || "#6B62FE" },
         menuItens: { main: config.system.color.lightTheme.menuItens || "#ffffff" },
         sub: { main: config.system.color.lightTheme.sub || "#ffffff" },
         toolbarIcon: { main: config.system.color.lightTheme.toolbarIcon || "#ffffff" },
         divide: { main: config.system.color.lightTheme.divide || "#E0E0E0" },
+        background: {
+          default: "#F4F7FB",
+          paper: "#FFFFFF",
+        },
+        text: {
+          primary: "#2C3E50",
+          secondary: "#7F8C8D",
+        },
       },
       backgroundImage: `url(${lightBackground})`,
     },
     locale
-  );
+  ), [locale]);
 
-  const darkTheme = createTheme(
+  const darkTheme = React.useMemo(() => createTheme(
     {
       palette: {
         mode: "dark",
@@ -58,12 +66,12 @@ const App = () => {
         toolbarIcon: { main: config.system.color.darkTheme.toolbarIcon || "#181d22" },
         divide: { main: config.system.color.darkTheme.divide || "#080d14" },
         background: {
-          default: config.system.color.darkTheme.palette.background.default || "#080d14",
-          paper: config.system.color.darkTheme.palette.background.paper || "#181d22",
+          default: config.system.color.darkTheme.palette.background?.default || "#080d14",
+          paper: config.system.color.darkTheme.palette.background?.paper || "#181d22",
         },
         text: {
-          primary: config.system.color.darkTheme.palette.text.primary || "#52d869",
-          secondary: config.system.color.darkTheme.palette.text.secondary || "#ffffff",
+          primary: config.system.color.darkTheme.palette.text?.primary || "#52d869",
+          secondary: config.system.color.darkTheme.palette.text?.secondary || "#ffffff",
         },
       },
       backgroundImage: `url(${darkBackground})`,
@@ -78,7 +86,7 @@ const App = () => {
       },
     },
     locale
-  );
+  ), [locale]);
 
   const themeToggler = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");

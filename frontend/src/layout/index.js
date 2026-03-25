@@ -11,7 +11,6 @@ import {
   MenuItem,
   IconButton,
   Menu,
-  useTheme, // Adicionado
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
@@ -238,7 +237,6 @@ const LoggedInLayout = ({ children }) => {
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
-              getContentAnchorEl={null}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "right",

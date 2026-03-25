@@ -174,10 +174,9 @@ const TagModal = ({ open, onClose, tagId, reload }) => {
 											endAdornment: (
 												<IconButton
 													size="small"
-													color="default"
+													color="inherit"
 													onClick={() => setColorPickerModalOpen(!colorPickerModalOpen)}
-												>
-													<Colorize />
+												>													<Colorize />
 												</IconButton>
 											),
 										}}

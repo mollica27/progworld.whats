@@ -47,11 +47,36 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
 
   SetTicketMessagesAsRead(ticket);
 
+  const io = getIO();
+
   if (medias) {
     await Promise.all(
       medias.map(async (media: Express.Multer.File) => {
         if (ticket.channel === "whatsapp") {
-          await SendWhatsAppMedia({ media, ticket });
+          const sentMedia = await SendWhatsAppMedia({ media, ticket });
+          
+          const newMessage = await Message.create({
+            id: sentMedia.key.id,
+            ticketId: ticket.id,
+            contactId: ticket.contactId,
+            body: media.originalname,
+            fromMe: true,
+            read: true,
+            mediaType: media.mimetype ? media.mimetype.split("/")[0] : "image",
+            mediaUrl: media.filename,
+            ack: 1,
+            dataJson: JSON.stringify(sentMedia)
+          });
+
+          io.to(ticketId.toString())
+            .to(ticket.status)
+            .to("notification")
+            .emit("appMessage", {
+              action: "create",
+              message: newMessage,
+              ticket: ticket,
+              contact: ticket.contact
+            });
         }
 
         if (ticket.channel === "facebook" || ticket.channel === "instagram") {
@@ -61,11 +86,32 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
     );
   } else {
     if (ticket.channel === "whatsapp") {
-      await SendWhatsAppMessage({ body, ticket, quotedMsg });
+      const sentMessage = await SendWhatsAppMessage({ body, ticket, quotedMsg });
+      
+      const newMessage = await Message.create({
+        id: sentMessage.key.id,
+        ticketId: ticket.id,
+        contactId: ticket.contactId,
+        body,
+        fromMe: true,
+        read: true,
+        mediaType: "chat",
+        ack: 1,
+        dataJson: JSON.stringify(sentMessage)
+      });
+
+      io.to(ticketId.toString())
+        .to(ticket.status)
+        .to("notification")
+        .emit("appMessage", {
+          action: "create",
+          message: newMessage,
+          ticket: ticket,
+          contact: ticket.contact
+        });
     }
 
     if (ticket.channel === "facebook" || ticket.channel === "instagram") {
-      console.log("facebook");
       await sendFaceMessage({ body, ticket, quotedMsg });
     }
   }

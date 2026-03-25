@@ -324,10 +324,9 @@ const QueueModal = ({ open, onClose, queueId, onEdit }) => {
                     endAdornment: (
                       <IconButton
                         size="small"
-                        color="default"
+                        color="inherit"
                         onClick={() => setColorPickerModalOpen(true)}
-                      >
-                        <Colorize />
+                      >                        <Colorize />
                       </IconButton>
                     ),
                   }}

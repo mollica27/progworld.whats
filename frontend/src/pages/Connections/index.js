@@ -242,7 +242,7 @@ const Connections = () => {
 					</Button>
 				)}
 				{whatsApp.status === "OPENING" && (
-					<Button size="small" variant="outlined" disabled color="default">
+					<Button size="small" variant="outlined" disabled color="inherit">
 						{i18n.t("connections.buttons.connecting")}
 					</Button>
 				)}

@@ -1,7 +1,7 @@
 import React from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import Skeleton from "@mui/lab/Skeleton";
+import Skeleton from "@mui/material/Skeleton";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -22,7 +22,7 @@ const TableRowSkeleton = ({ avatar, columns }) => {
 						<TableCell style={{ paddingRight: 0 }}>
 							<Skeleton
 								animation="wave"
-								variant="circle"
+								variant="circular"
 								width={40}
 								height={40}
 							/>

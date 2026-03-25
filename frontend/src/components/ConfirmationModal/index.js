@@ -23,7 +23,7 @@ const ConfirmationModal = ({ title, children, open, onClose, onConfirm }) => {
 				<Button
 					variant="contained"
 					onClick={() => onClose(false)}
-					color="default"
+					color="inherit"
 				>
 					{i18n.t("confirmationModal.buttons.cancel")}
 				</Button>

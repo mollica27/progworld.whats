@@ -43,7 +43,6 @@ const MessageOptionsMenu = ({ message, menuOpen, handleClose, anchorEl }) => {
       </ConfirmationModal>
       <Menu
         anchorEl={anchorEl}
-        getContentAnchorEl={null}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "right",

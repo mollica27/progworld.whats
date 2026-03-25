@@ -2,7 +2,7 @@ import React from "react";
 
 import { makeStyles } from "@mui/styles";
 import { Avatar, Card, CardHeader } from "@mui/material";
-import Skeleton from "@mui/lab/Skeleton";
+import Skeleton from "@mui/material/Skeleton";
 
 const useStyles = makeStyles(theme => ({
 	ticketHeader: {
@@ -22,7 +22,7 @@ const TicketHeaderSkeleton = () => {
 				titleTypographyProps={{ noWrap: true }}
 				subheaderTypographyProps={{ noWrap: true }}
 				avatar={
-					<Skeleton animation="wave" variant="circle">
+					<Skeleton animation="wave" variant="circular">
 						<Avatar alt="contact_image" />
 					</Skeleton>
 				}
