@@ -78,7 +78,7 @@ DB_NAME=unkbot
 JWT_SECRET=asdsad
 JWT_REFRESH_SECRET=asdasd
 
-REDIS_URI=redis://:suaSenha@127.0.0.1:6379
+REDIS_URI=redis://:suaSenha@localhost:6379
 REDIS_OPT_LIMITER_MAX=1
 REDIS_OPT_LIMITER_DURATION=3000
 
@@ -158,7 +158,7 @@ server {
   server_name api.mydomain.com;
 
   location / {
-    proxy_pass http://127.0.0.1:8080;
+    proxy_pass http://localhost:8080;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection 'upgrade';
@@ -182,7 +182,7 @@ server {
   server_name app.mydomain.com;
 
   location / {
-    proxy_pass http://127.0.0.1:3000;
+    proxy_pass http://localhost:3000;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection 'upgrade';

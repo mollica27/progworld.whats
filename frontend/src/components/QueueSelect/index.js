@@ -44,7 +44,6 @@ const QueueSelect = ({ selectedQueueIds, onChange }) => {
 				<InputLabel>{i18n.t("queueSelect.inputLabel")}</InputLabel>
 				<Select
 					multiple
-					labelWidth={60}
 					value={selectedQueueIds}
 					onChange={handleChange}
 					MenuProps={{

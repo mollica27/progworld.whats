@@ -139,7 +139,6 @@ const QueueSelect = ({ selectedQueueIds, onChange }) => {
 				<InputLabel>Selecione uma conexÃ£o*</InputLabel>
 				<Select
 					// multiple
-					labelWidth={180}
 					value={selectedQueueIds}
 					onChange={handleChange}
 					MenuProps={{
